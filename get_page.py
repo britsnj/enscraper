@@ -1,7 +1,7 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-url = "https://www.en-standard.eu/search/" ##This needs to be replaced with automated search call
+url = "https://www.en-standard.eu/search/?q=IEC+31010%3A" ##This needs to be replaced with automated search call
 
 ##To open the page pass the url to urlopen
 
