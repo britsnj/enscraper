@@ -20,8 +20,13 @@ soup = BeautifulSoup(html, 'html.parser')
 
 result = soup.find("a", class_="katalogProduct__name")
 
+title = result.contents[0]
+print(title)
+
+#print(result)
+
 ##Strip the text from the href tag and add a space between name and title.
 
-output = result.get_text(" ")
+output = result.span.get_text(" ")
 
 print (output)
