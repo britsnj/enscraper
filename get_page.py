@@ -20,13 +20,9 @@ soup = BeautifulSoup(html, 'html.parser')
 
 result = soup.find("a", class_="katalogProduct__name")
 
-title = result.contents[0]
+title = result.contents[0] ##The first child in the result variable is the title of the standard.
 print(title)
 
-#print(result)
-
-##Strip the text from the href tag and add a space between name and title.
-
-output = result.span.get_text(" ")
+output = result.span.get_text(" ") ## The name of the standard is located in a span tag.
 
 print (output)

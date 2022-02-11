@@ -28,7 +28,7 @@ docstring = ' ' .join(docdata)
 std_list_raw = re.findall(r'[E][N]\s\d{3,5}', docstring)
 en_list_final =  []
 for item in std_list_raw:
-    en_list_final.append(item.strip())
+    en_list_final.append(item.strip())## adding .replace(" ","+") in here to give the correct string for the search function.
 en_list_final = list(dict.fromkeys(en_list_final))
 print(en_list_final)
 
