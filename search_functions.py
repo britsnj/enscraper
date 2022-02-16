@@ -12,7 +12,7 @@ docstring = ' ' .join(docdata)
 #print(docstring)
 
 
-std_list_raw = re.findall(r'[E][N]\s\d{3,8}', docstring)
+std_list_raw = re.findall(r'[E][N]\s\d{3,8}\s-[\s\w]*', docstring)
 en_description_final =  []
 for item in std_list_raw:
     en_description_final.append(item.strip())
