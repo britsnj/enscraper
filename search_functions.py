@@ -40,10 +40,14 @@ def searchStdName(stdName):
     stdListRaw3 = re.findall(r'' + stdName + '\sEN\s\d{3,8}', docstring)
     #Include above iterarions including date ie, EN 12345:2020
     stdListRaw11 = re.findall(r''+stdName+'\s\d{3,8}:\d\d\d\d', docstring)
-    stdListRaw12 = re.findall(r''+stdName+'IS\d{3,8}:\d\d\d\d', docstring)
+    stdListRaw12 = re.findall(r''+stdName+'\d{3,8}:\d\d\d\d', docstring)
     stdListRaw13 = re.findall(r'' + stdName + '\sEN\s\d{3,8}:\d\d\d\d', docstring)
+    # Include Standard with amendments indicate i.e. EN1234:2020+A1:2021
+    stdListRaw14 = re.findall(r'' + stdName + '\s\d{3,8}:\d\d\d\d\wA\d{1,2}:\d\d\d\d', docstring)
+    stdListRaw15 = re.findall(r'' + stdName + '\d{3,8}:\d\d\d\d\wA\d{1,2}:\d\d\d\d', docstring)
+    stdListRaw16 = re.findall(r'' + stdName + '\sEN\s\d{3,8}:\d\d\d\d\wA\d{1,2}:\d\d\d\d', docstring)
 
-    stdListRaw = stdListRaw1 + stdListRaw2 + stdListRaw3 + stdListRaw11 + stdListRaw12 + stdListRaw13
+    stdListRaw = stdListRaw1 + stdListRaw2 + stdListRaw3 + stdListRaw11 + stdListRaw12 + stdListRaw13 + stdListRaw14 + stdListRaw15 + stdListRaw16
     print((stdListRaw))
     global stdNameList
     stdNameList = []
@@ -59,6 +63,8 @@ globalStdNameList = globalStdNameList + stdNameList
 searchStdName("IEC")
 globalStdNameList = globalStdNameList + stdNameList
 searchStdName("IS")
+globalStdNameList = globalStdNameList + stdNameList
+searchStdName("I.S.")
 globalStdNameList = globalStdNameList + stdNameList
 print(globalStdNameList)
 
