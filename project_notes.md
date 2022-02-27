@@ -10,3 +10,7 @@ Additional note. Evening now. Got PyCharm set up for virtual environment. get_pa
 - Added dictionary with output from website.
 
 Next Actions. Need to work on the regex to extract correct text (name) from document to be able to replace the correct text. ????
+
+# 220227
+- Over the past two weeks I worked on the regex functions. Wanted to get to a single expression that searches for all possible iterations of standard names
+- Think I cracked it today. ``` +stdName+'\s*E*N*\s*\d{2,8}:*\d*[+]*[A]*\d*:*\d[+]*[A]*\d*:*\d[+]*[A]*\d*:*\d'   ``` with stdName being the standard we are looking for.
