@@ -9,3 +9,4 @@ Work to still be completed:
 
 1. Automate the search function to accept inputs from an array extracted from a document.
 2. Save outputs as array to match the input array.
+3. 
