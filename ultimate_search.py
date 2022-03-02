@@ -13,21 +13,27 @@ docstring = ' ' .join(docdata)
 print(docstring)
 
 #Declare global variables
-stdListFull = []
-stdListNames = []
+
 
 #Function to search for standard names based on standard input (i.e. EN, IEC, IEEE etc.
 def stdSearch(stdName):
-    #Find all standard names, including dates and appendixes and save to list.
-    stdListFull = re.findall(r''+stdName+'\s*E*N*\s*\d{2,8}:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
-    #Find only the standard names, excluding dates etc. and save to list.
-    stdListNames = re.findall(r''+stdName+'\s*E*N*\s*\d{2,8}', docstring)
+    global stdListFull
+    global stdListNames
+    stdListFull = []
+    stdListNames = []
+    if stdName == "EN":
+        #Find all standard names, including dates and appendixes and save to list.
+        stdListFull = re.findall(r''+stdName+'\s*I*E*C*\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
+        stdListFull = stdListFull + re.findall(r''+stdName+'\sISO\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
+        #Find only the standard names, excluding dates etc. and save to list.
+        stdListNames = re.findall(r''+stdName+'\s*E*N*\s*\d{2,8}-*\d*-*\d*', docstring)
+    else:
+        stdListFull = stdListFull + re.findall(r'' + stdName + '\s*E*N*\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
+        stdListNames = re.findall(r''+stdName+'\s*E*N*\s*\d{2,8}-*\d*-*\d*', docstring)
+    #print(stdListFull)
+    #print(stdListNames)
 
-print(stdListFull)
-print(stdListNames)
-
-stdSearch("BS")
-globalStdNameList = stdListNames
+globalStdNameList = []
 stdSearch("EN")
 globalStdNameList = globalStdNameList + stdListNames
 stdSearch("IEC")
