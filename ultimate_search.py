@@ -24,9 +24,9 @@ def stdSearch(stdName):
     if stdName == "EN":
         #Find all standard names, including dates and appendixes and save to list.
         stdListFull = re.findall(r''+stdName+'\s*I*E*C*\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
-        stdListFull = stdListFull + re.findall(r''+stdName+'\sISO\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
+        stdListFull = stdListFull + re.findall(r''+stdName+'\s*I*S*O*\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
         #Find only the standard names, excluding dates etc. and save to list.
-        stdListNames = re.findall(r''+stdName+'\s*E*N*\s*\d{2,8}-*\d*-*\d*', docstring)
+        stdListNames = re.findall(r''+stdName+'\s*I*E*C*\s*\d{2,8}-*\d*-*\d*', docstring)
     else:
         stdListFull = stdListFull + re.findall(r'' + stdName + '\s*E*N*\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
         stdListNames = re.findall(r''+stdName+'\s*E*N*\s*\d{2,8}-*\d*-*\d*', docstring)
