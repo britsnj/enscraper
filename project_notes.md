@@ -14,3 +14,9 @@ Next Actions. Need to work on the regex to extract correct text (name) from docu
 # 220227
 - Over the past two weeks I worked on the regex functions. Wanted to get to a single expression that searches for all possible iterations of standard names
 - Think I cracked it today. ``` +stdName+'\s*E*N*\s*\d{2,8}:*\d*[+]*[A]*\d*:*\d[+]*[A]*\d*:*\d[+]*[A]*\d*:*\d'   ``` with stdName being the standard we are looking for.
+# 220305
+- The search functions has been completed.
+- Added in a feature to open a file based on user input name.
+- Original docx file now saved as a backup file as well... just for incase
+- Started working on the GUI
+- In paralel with the GUI I need to explore the options of saving the output list to a usable excell or word table.
