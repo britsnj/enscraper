@@ -67,7 +67,7 @@ text1.pack(ipady=10, ipadx=10)
 
 open_button.pack()
 
-
+print(filename)
 
 
 
