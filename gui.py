@@ -4,6 +4,11 @@ from tkinter import ttk
 from tkinter import messagebox
 #import file dialogue to be able to open file
 from tkinter import filedialog as fd
+
+#import local assets
+from get_file import handle_file
+
+
 # Create Window
 root = tk.Tk()
 #Rename window title
@@ -17,10 +22,10 @@ selectfile.pack(pady=10, padx=10, fill='x', expand=True)
 
 #Format here is widget= WidgetName(container, **Options)
 
-filename = tk.StringVar()
 
 def submit_clicked():
-    return filename
+    filepath = filename_entry.get()
+    handle_file(filepath)
 
 
 #Filename
@@ -28,7 +33,7 @@ def submit_clicked():
 filename_label = ttk.Label(selectfile, text="File to be scanned (complete path):")
 filename_label.pack(fill='x', expand=True)
 
-filename_entry = ttk.Entry(selectfile, textvariable=filename)
+filename_entry = ttk.Entry(selectfile)
 filename_entry.pack(fill='x', expand=True,)
 
 #Submit button
@@ -46,7 +51,7 @@ def select_file():
         ('text files', '*.txt')
     )
 
-    filename = fd.askopenfilename(
+    filepath = fd.askopenfilename(
         title='Open a file',
         initialdir='/',
         filetypes=filetypes
@@ -54,9 +59,15 @@ def select_file():
 
     messagebox.showinfo(
         title='Selected File',
-        message=filename
+        message=filepath
     )
-    return filename
+
+    filepath = filepath.replace('/', "\\")
+    print(filepath)
+    handle_file(filepath)
+
+
+
 
 open_button = ttk.Button(
     selectfile,
@@ -66,9 +77,10 @@ open_button = ttk.Button(
 
 
 
+
 open_button.pack()
 
-print(filename)
+#print(filepath)
 
 
 
