@@ -4,7 +4,7 @@ from tkinter import ttk
 from tkinter import messagebox
 #import file dialogue to be able to open file
 from tkinter import filedialog as fd
-
+import os
 #import local assets
 from get_file import handle_file
 
@@ -25,7 +25,24 @@ selectfile.pack(pady=10, padx=10, fill='x', expand=True)
 
 def submit_clicked():
     filepath = filename_entry.get()
-    handle_file(filepath)
+    filepath = filepath.replace('"', '')
+    temp_name, file_ext = filepath.rsplit('.', 1)
+    print(file_ext)
+    if (file_ext != 'txt') and (file_ext != 'docx'):
+        messagebox.showinfo(
+            title='File Error',
+            message="Unknown file type. Only txt or docx files accepted"
+        )
+    elif os.path.exists(filepath):
+        handle_file(filepath)
+        filename_entry.delete(0, 'end')
+
+    else:
+        messagebox.showinfo(
+            title='File Error',
+            message="That file does not exist. Please try again"
+        )
+
 
 
 #Filename
