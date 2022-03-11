@@ -7,6 +7,9 @@ from tkinter import filedialog as fd
 import os
 #import local assets
 from get_file import handle_file
+from ultimate_search import searchAll
+from ultimate_search import stdSearch
+
 
 
 # Create Window
@@ -36,6 +39,8 @@ def submit_clicked():
     elif os.path.exists(filepath):
         handle_file(filepath)
         filename_entry.delete(0, 'end')
+        searchAll()
+
 
     else:
         messagebox.showinfo(

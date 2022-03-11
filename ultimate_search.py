@@ -10,7 +10,7 @@ for docpara in document.paragraphs:
 #Extract the text from the variable and save as a string.
 docstring = ' ' .join(docdata)
 
-print(docstring)
+#print(docstring)
 
 #Declare global variables
 
@@ -27,19 +27,28 @@ def stdSearch(stdName):
         stdListFull = stdListFull + re.findall(r''+stdName+'\s*I*S*O*\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
         #Find only the standard names, excluding dates etc. and save to list.
         stdListNames = re.findall(r''+stdName+'\s*I*E*C*\s*\d{2,8}-*\d*-*\d*', docstring)
+    elif stdName == "IEEE":
+        stdListFull = re.findall(r''+stdName+'\s*\w*\d{2,5}[.]*\d*[.]*\d*-*:*\d*', docstring)
+        stdListNames = re.findall(r'' + stdName + '\s*\w*\d{2,5}[.]*\d*[.]*\d*', docstring)
     else:
         stdListFull = stdListFull + re.findall(r'' + stdName + '\s*E*N*\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
         stdListNames = re.findall(r''+stdName+'\s*E*N*\s*\d{2,8}-*\d*-*\d*', docstring)
     #print(stdListFull)
     #print(stdListNames)
 
-globalStdNameList = []
-stdSearch("EN")
-globalStdNameList = globalStdNameList + stdListNames
-stdSearch("IEC")
-globalStdNameList = globalStdNameList + stdListNames
-stdSearch("IS")
-globalStdNameList = globalStdNameList + stdListNames
-stdSearch("I.S.")
-globalStdNameList = globalStdNameList + stdListNames
-print(globalStdNameList)
+def searchAll():
+    global globalStdNameList
+    globalStdNameList = []
+    stdSearch("EN")
+    globalStdNameList = globalStdNameList + stdListNames
+    stdSearch("IEC")
+    globalStdNameList = globalStdNameList + stdListNames
+    stdSearch("IS")
+    globalStdNameList = globalStdNameList + stdListNames
+    stdSearch("I.S.")
+    globalStdNameList = globalStdNameList + stdListNames
+    stdSearch("ISO")
+    globalStdNameList = globalStdNameList + stdListNames
+    stdSearch("IEEE")
+    globalStdNameList = globalStdNameList + stdListNames
+    print(globalStdNameList)
