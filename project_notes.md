@@ -20,3 +20,4 @@ Next Actions. Need to work on the regex to extract correct text (name) from docu
 - Original docx file now saved as a backup file as well... just for incase
 - Started working on the GUI
 - In paralel with the GUI I need to explore the options of saving the output list to a usable excell or word table.
+- Create a saved file on network to document all search results
