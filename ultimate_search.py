@@ -37,8 +37,6 @@ def stdSearch(stdName):
     #print(stdListNames)
 
 def searchAll():
-    global globalStdNameList
-    globalStdNameList = []
     stdSearch("EN")
     globalStdNameList = globalStdNameList + stdListNames
     stdSearch("IEC")
@@ -52,3 +50,4 @@ def searchAll():
     stdSearch("IEEE")
     globalStdNameList = globalStdNameList + stdListNames
     print(globalStdNameList)
+    return globalStdNameList
