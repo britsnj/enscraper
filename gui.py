@@ -2,6 +2,7 @@ import tkinter as tk
 #import themed widgets
 from tkinter import ttk
 from tkinter import messagebox
+from tkinter.scrolledtext import ScrolledText
 #import file dialogue to be able to open file
 from tkinter import filedialog as fd
 import os
@@ -51,11 +52,16 @@ def submit_clicked():
         results.geometry('500x300+450+150')
         results.minsize(250, 100)
 
-        results_label = ttk.Label(results, text="The standards found in "+filename+ " is:")
+        results_label = ttk.Label(results, text="The standards found are:")
         results_label.pack(fill='x', expand=True)
 
-        filename_entry = ttk.Entry(selectfile)
-        filename_entry.pack(fill='x', expand=True, )
+        output_textbox = ScrolledText(results, width=50, height=10)
+        output_textbox['state'] = 'normal'
+        output_textbox.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
+
+
+
+        output_textbox.insert('1.0', globalStdNameList)
 
         results.mainloop()
 
@@ -163,6 +169,12 @@ def searchAll():
     globalStdNameList = globalStdNameList + stdListNames
     stdSearch("IEEE")
     globalStdNameList = globalStdNameList + stdListNames
+    tempList = []
+    for item in globalStdNameList:
+        tempList.append(item.strip())
+        tempList = list(dict.fromkeys(globalStdNameList))
+    globalStdNameList = tempList
+
     print(globalStdNameList)
 
 def readDocx():

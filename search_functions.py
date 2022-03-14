@@ -55,7 +55,7 @@ def searchStdName(stdName):
     for item in stdListRaw:
         stdNameList.append(item.strip())
         stdNameList = list(dict.fromkeys(stdNameList))
-    #print(stdNameList)
+    print(stdNameList)
 
 searchStdName("BS")
 globalStdNameList = stdNameList
