@@ -52,16 +52,25 @@ def submit_clicked():
         results.geometry('500x300+450+150')
         results.minsize(250, 100)
 
-        results_label = ttk.Label(results, text="The standards found are:")
-        results_label.pack(fill='x', expand=True)
+        results_label1 = ttk.Label(results, text="The standards found are:")
+        results_label1.pack(fill='x', expand=True)
 
-        output_textbox = ScrolledText(results, width=50, height=10)
-        output_textbox['state'] = 'normal'
-        output_textbox.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
+        output_textbox1 = ScrolledText(results, width=50, height=10)
+        output_textbox1['state'] = 'normal'
+        output_textbox1.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
+        outputText1 = '\n'.join(globalStdNameList)
 
+        output_textbox1.insert('1.0', outputText1)
 
+        results_label2 = ttk.Label(results, text="Standards with further descriptions:")
+        results_label2.pack(fill='x', expand=True)
 
-        output_textbox.insert('1.0', globalStdNameList)
+        output_textbox2 = ScrolledText(results, width=50, height=10)
+        output_textbox2['state'] = 'normal'
+        output_textbox2.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
+        outputText2 = '\n'.join(globalStdFullDesc)
+
+        output_textbox2.insert('1.0', outputText2)
 
         results.mainloop()
 
@@ -125,8 +134,6 @@ open_button = ttk.Button(
 )
 
 
-
-
 open_button.pack()
 
 #print(filepath)
@@ -157,25 +164,37 @@ def stdSearch(stdName):
 def searchAll():
     global globalStdNameList
     globalStdNameList = []
+    global globalStdFullDesc
+    globalStdFullDesc = []
     stdSearch("EN")
     globalStdNameList = globalStdNameList + stdListNames
+    globalStdFullDesc = globalStdFullDesc + stdListFull
     stdSearch("IEC")
     globalStdNameList = globalStdNameList + stdListNames
+    globalStdFullDesc = globalStdFullDesc + stdListFull
     stdSearch("IS")
     globalStdNameList = globalStdNameList + stdListNames
+    globalStdFullDesc = globalStdFullDesc + stdListFull
     stdSearch("I.S.")
     globalStdNameList = globalStdNameList + stdListNames
+    globalStdFullDesc = globalStdFullDesc + stdListFull
     stdSearch("ISO")
     globalStdNameList = globalStdNameList + stdListNames
+    globalStdFullDesc = globalStdFullDesc + stdListFull
     stdSearch("IEEE")
     globalStdNameList = globalStdNameList + stdListNames
+    globalStdFullDesc = globalStdFullDesc + stdListFull
     tempList = []
     for item in globalStdNameList:
         tempList.append(item.strip())
         tempList = list(dict.fromkeys(globalStdNameList))
     globalStdNameList = tempList
+    tempList = []
+    for item in globalStdFullDesc:
+        tempList.append(item.strip())
+        tempList = list(dict.fromkeys(globalStdFullDesc))
+    globalStdFullDesc = tempList
 
-    print(globalStdNameList)
 
 def readDocx():
     global docstring
