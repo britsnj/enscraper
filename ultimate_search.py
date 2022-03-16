@@ -33,10 +33,11 @@ def stdSearch(stdName):
     else:
         stdListFull = stdListFull + re.findall(r'' + stdName + '\s*E*N*\s*\d{2,8}-*\d*-*\d*-*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*[+]*[A]*\d*:*\d*', docstring)
         stdListNames = re.findall(r''+stdName+'\s*E*N*\s*\d{2,8}-*\d*-*\d*', docstring)
-    #print(stdListFull)
-    #print(stdListNames)
+    print(stdListFull)
+    print(stdListNames)
 
 def searchAll():
+    globalStdNameLits = []
     stdSearch("EN")
     globalStdNameList = globalStdNameList + stdListNames
     stdSearch("IEC")
@@ -49,5 +50,7 @@ def searchAll():
     globalStdNameList = globalStdNameList + stdListNames
     stdSearch("IEEE")
     globalStdNameList = globalStdNameList + stdListNames
-    print(globalStdNameList)
-    return globalStdNameList
+    #print(globalStdNameList)
+    #return globalStdNameList
+
+searchAll()

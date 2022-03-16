@@ -12,7 +12,7 @@ import re
 from docx import Document
 #import local assets
 from get_file import handle_file
-from ultimate_search import stdSearch
+
 
 
 
@@ -53,24 +53,17 @@ def submit_clicked():
         results.minsize(250, 100)
 
         results_label1 = ttk.Label(results, text="The standards found are:")
-        results_label1.pack(fill='x', expand=True)
+        results_label1.pack()
 
         output_textbox1 = ScrolledText(results, width=50, height=10)
         output_textbox1['state'] = 'normal'
-        output_textbox1.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
-        outputText1 = '\n'.join(globalStdNameList)
+        output_textbox1.pack()
+        outputText1 = '\n'.join(globalStdFullDesc)
 
         output_textbox1.insert('1.0', outputText1)
-
-        results_label2 = ttk.Label(results, text="Standards with further descriptions:")
-        results_label2.pack(fill='x', expand=True)
-
-        output_textbox2 = ScrolledText(results, width=50, height=10)
-        output_textbox2['state'] = 'normal'
-        output_textbox2.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
-        outputText2 = '\n'.join(globalStdFullDesc)
-
-        output_textbox2.insert('1.0', outputText2)
+        outputTxtFile = '{}.{}'.format(filename, 'txt')
+        with open(outputTxtFile, "w") as output:
+            output.write(str(globalStdFullDesc))
 
         results.mainloop()
 
