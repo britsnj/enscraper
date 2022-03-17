@@ -61,7 +61,10 @@ def submit_clicked():
         outputText1 = '\n'.join(globalStdFullDesc)
 
         output_textbox1.insert('1.0', outputText1)
+        print(temp_name)
+        dirpath, filename = temp_name.rsplit('\\', 1)
         outputTxtFile = '{}.{}'.format(filename, 'txt')
+        print(outputTxtFile)
         with open(outputTxtFile, "w") as output:
             output.write(str(globalStdFullDesc))
 
