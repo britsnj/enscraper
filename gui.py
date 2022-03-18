@@ -10,6 +10,8 @@ import os
 import docx
 import re
 from docx import Document
+#Import csv module to write csv file for database
+import csv
 #import local assets
 from get_file import handle_file
 
@@ -61,12 +63,20 @@ def submit_clicked():
         outputText1 = '\n'.join(globalStdFullDesc)
 
         output_textbox1.insert('1.0', outputText1)
+
+        #Create csv file containing
         print(temp_name)
         dirpath, filename = temp_name.rsplit('\\', 1)
-        outputTxtFile = '{}.{}'.format(filename, 'txt')
+        #Add filename as first item in list for csv file
+        globalStdFullDesc.insert(0, filename)
+        outputTxtFile = '{}.{}'.format(filename, 'csv')
         print(outputTxtFile)
-        with open(outputTxtFile, "w") as output:
-            output.write(str(globalStdFullDesc))
+        #open new csv file
+        with open(outputTxtFile, "w", newline='') as output:
+            #use csv.writer method to write output to csv package
+            writer = csv.writer(output)
+            writer.writerow(globalStdFullDesc)
+
 
         results.mainloop()
 
