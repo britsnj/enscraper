@@ -64,23 +64,21 @@ def submit_clicked():
 
         output_textbox1.insert('1.0', outputText1)
 
-        #Create csv file containing
+
+
         print(temp_name)
         dirpath, filename = temp_name.rsplit('\\', 1)
-        #Add filename as first item in list for csv file
+        # Add filename as first item in list for csv file
         globalStdFullDesc.insert(0, filename)
         outputTxtFile = '{}.{}'.format(filename, 'csv')
         print(outputTxtFile)
-        #open new csv file
+        # open new csv file
         with open(outputTxtFile, "w", newline='') as output:
-            #use csv.writer method to write output to csv package
+            # use csv.writer method to write output to csv package
             writer = csv.writer(output)
             writer.writerow(globalStdFullDesc)
 
-
         results.mainloop()
-
-
 
     else:
         messagebox.showinfo(
@@ -121,14 +119,41 @@ def select_file():
         filetypes=filetypes
     )
 
-    messagebox.showinfo(
-        title='Selected File',
-        message=filepath
-    )
-
     filepath = filepath.replace('/', "\\")
+    temp_name, file_ext = filepath.rsplit('.', 1)
     print(filepath)
     handle_file(filepath)
+
+    readDocx()
+    searchAll()
+    results = tk.Tk()
+    results.title("Standards Found")
+    results.geometry('500x300+450+150')
+    results.minsize(250, 100)
+
+    results_label1 = ttk.Label(results, text="The standards found are:")
+    results_label1.pack()
+
+    output_textbox1 = ScrolledText(results, width=50, height=10)
+    output_textbox1['state'] = 'normal'
+    output_textbox1.pack()
+    outputText1 = '\n'.join(globalStdFullDesc)
+
+    output_textbox1.insert('1.0', outputText1)
+
+    print(temp_name)
+    dirpath, filename = temp_name.rsplit('\\', 1)
+    # Add filename as first item in list for csv file
+    globalStdFullDesc.insert(0, filename)
+    outputTxtFile = '{}.{}'.format(filename, 'csv')
+    print(outputTxtFile)
+    # open new csv file
+    with open(outputTxtFile, "w", newline='') as output:
+        # use csv.writer method to write output to csv package
+        writer = csv.writer(output)
+        writer.writerow(globalStdFullDesc)
+
+    results.mainloop()
 
 
 
@@ -214,6 +239,8 @@ def readDocx():
     #Extract the text from the variable and save as a string.
     docstring = ' ' .join(docdata)
     #print(docstring)
+
+
 
 
 
