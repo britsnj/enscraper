@@ -5,8 +5,12 @@
 
  The top search result is parsed to the 'output' variable.
 
-Work to still be completed:
 
-1. Automate the search function to accept inputs from an array extracted from a document.
-2. Save outputs as array to match the input array.
-3. 
+
+
+Went off on a tangent here. Now also including a scan directory function where the function searches all doc files located in a directory
+
+Adding in a csv file to store the output reports for future database. Note to self - learn how to use pandas or numpy.
+
+
+
