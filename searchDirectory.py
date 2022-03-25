@@ -1,10 +1,12 @@
 from tkinter import filedialog
 from tkinter import *
+from tkinter import messagebox
 import time
 import os
 import docx
 import re
 from docx import Document
+from pathlib import Path
 import csv
 
 def stdSearch(stdName):
@@ -44,8 +46,9 @@ root = Tk()
 root.withdraw()
 folder_selected = filedialog.askdirectory()
 timestr = time.strftime("%Y%m%d-%H%M%S")
-dbFile = ''+timestr+'.csv'
-db = open(dbFile, 'x')
+dbFolder = Path("db_files")
+dbFile = timestr+'.csv'
+db = open(dbFolder / dbFile, 'x')
 db.close()
 dir_list = os.listdir(folder_selected)
 print(dir_list)
@@ -53,7 +56,7 @@ for file in dir_list:
     if file.endswith(".docx"):
         filename, ext = file.rsplit('.', 1)
 
-        document = docx.Document(''+folder_selected+'/'+file+'')
+        document = docx.Document(folder_selected + '/' +file)
         # Create a file with the contents of the object by iterating through each paragraph and appending it to the docdata variable
         docdata = []
         for docpara in document.paragraphs:
@@ -62,11 +65,18 @@ for file in dir_list:
         docstring = ' '.join(docdata)
         docSearchResults = searchAll()
         docSearchResults.insert(0, filename)
-        with open(dbFile, "a", newline='') as output:
+        with open(dbFolder / dbFile, "a", newline='') as output:
             # use csv.writer method to write output to csv package
             writer = csv.writer(output)
             writer.writerow(docSearchResults)
             output.close()
+
+messagebox.showinfo(
+    title='Success',
+    message="Directory scanned. Database Saved"
+)
+
+
 
 
 

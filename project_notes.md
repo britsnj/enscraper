@@ -24,3 +24,7 @@ Next Actions. Need to work on the regex to extract correct text (name) from docu
 #220324
 - Expanded the project to scan an entire folder at a time and write the standards found to a csv file for later use
 - Need to create a database folder in the project to save the csv files there for now. This will end up being a network location (I think)
+#220325
+- Database folder created.
+- Messagebox created to indicate process is complete.
+- Look into creating progress bar
