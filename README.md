@@ -12,5 +12,7 @@ Went off on a tangent here. Now also including a scan directory function where t
 
 Adding in a csv file to store the output reports for future database. Note to self - learn how to use pandas or numpy.
 
+Done now. Still need to colate the data into a single file, i.e. get the name from a row and add it to a master row if not there already
+
 
 
