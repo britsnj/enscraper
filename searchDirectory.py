@@ -69,7 +69,7 @@ for file in dir_list:
             # use csv.writer method to write output to csv package
             writer = csv.writer(output)
             writer.writerow(docSearchResults)
-            output.close()
+
 
 messagebox.showinfo(
     title='Success',

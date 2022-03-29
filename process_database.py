@@ -27,4 +27,5 @@ column_names = [i for i in range(0, largest_column_count)]
 # Read csv
 df = pd.read_csv(data_file, header=None, delimiter=data_file_delimiter, names=column_names)
 df = df.transpose()
-print(df)
+df.dropna(df)
+
