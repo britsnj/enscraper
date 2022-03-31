@@ -28,3 +28,6 @@ Next Actions. Need to work on the regex to extract correct text (name) from docu
 - Database folder created.
 - Messagebox created to indicate process is complete.
 - Look into creating progress bar
+#220331
+- Worked on a section to process the database. 
+- Steep learning curve with Pandas, trying to manipulate the csv files. Getting there slowly but surely
