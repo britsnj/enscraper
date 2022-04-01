@@ -5,6 +5,7 @@ from tkinter import *
 
 root = Tk()
 root.withdraw()
+database_file = filedialog.askopenfilename(title="Select database file", filetypes=(("csv files", "*.csv"),))
 file_selected = filedialog.askopenfilename(title="Select file to merge with database", filetypes=(("csv files", "*.csv"),))
 print((file_selected))
 
@@ -29,23 +30,21 @@ with open(file_selected, 'r') as temp_f:
 # Generate column names (will be 0, 1, 2, ..., largest_column_count - 1)
 column_names = [i for i in range(0, largest_column_count)]
 # Read csv
-df = pd.read_csv(file_selected, header=None, delimiter=data_file_delimiter, names=column_names)
+df = pd.read_csv(file_selected, encoding='latin1', header=None, delimiter=data_file_delimiter, names=column_names)
 df = df.transpose()
 df = df.drop(0)
 print(df)
 header_values = df.columns.values
+shape = df.shape
+print(shape[1])
+final_df = pd.read_csv(database_file, encoding = 'latin1', engine ='python')
+for i in range(shape[1]):
+    temp_df = df[i]
+    temp_df = temp_df.dropna()
+    final_df = pd.concat([final_df, temp_df])
 
-new_df1 = df[0]
-new_df1 = new_df1.dropna()
-print(new_df1)
-new_df2 = df[1]
-new_df2 = new_df2.dropna()
-print(new_df2)
-final_list = pd.concat([new_df1, new_df2])
-final_list.columns = ["name",]
-final_list.head()
-final_list = final_list.drop_duplicates()
-#final_list = final_list.sort_values(['name'])
-final_list.reset_index(drop=True, inplace=True)
-print(final_list)
+final_df = final_df.drop_duplicates()
+final_df.reset_index(drop=True, inplace=True)
+print(final_df)
+final_df.to_csv(database_file)
 
