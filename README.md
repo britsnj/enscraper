@@ -14,5 +14,7 @@ Adding in a csv file to store the output reports for future database. Note to se
 
 Done now. Still need to colate the data into a single file, i.e. get the name from a row and add it to a master row if not there already
 
+Have to add in an overall gui to give access to all the different components.
+
 
 
