@@ -39,13 +39,14 @@ shape = df.shape
 print(shape[1])
 final_df = pd.read_csv(database_file, engine ='python')
 final_df = final_df.squeeze('columns')
+print(final_df)
 for i in range(shape[1]):
     temp_df = df[i]
     temp_df = temp_df.dropna()
     final_df = pd.concat([final_df, temp_df])
 
 final_df = final_df.drop_duplicates()
-final_df.reset_index(drop=True, inplace=True)
+
 print(final_df)
-final_df.to_csv(database_file)
+final_df.to_csv(database_file, index=False)
 
