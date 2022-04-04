@@ -30,14 +30,15 @@ with open(file_selected, 'r') as temp_f:
 # Generate column names (will be 0, 1, 2, ..., largest_column_count - 1)
 column_names = [i for i in range(0, largest_column_count)]
 # Read csv
-df = pd.read_csv(file_selected, encoding='latin1', header=None, delimiter=data_file_delimiter, names=column_names)
+df = pd.read_csv(file_selected, header=None, delimiter=data_file_delimiter, names=column_names, engine='python')
 df = df.transpose()
 df = df.drop(0)
 print(df)
 header_values = df.columns.values
 shape = df.shape
 print(shape[1])
-final_df = pd.read_csv(database_file, encoding = 'latin1', engine ='python')
+final_df = pd.read_csv(database_file, engine ='python')
+final_df = final_df.squeeze('columns')
 for i in range(shape[1]):
     temp_df = df[i]
     temp_df = temp_df.dropna()

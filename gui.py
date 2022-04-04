@@ -73,7 +73,7 @@ def submit_clicked():
         outputTxtFile = '{}.{}'.format(filename, 'csv')
         print(outputTxtFile)
         # open new csv file
-        with open(outputTxtFile, "w", newline='') as output:
+        with open(outputTxtFile, "w", newline='', encoding='utf8') as output:
             # use csv.writer method to write output to csv package
             writer = csv.writer(output)
             writer.writerow(globalStdFullDesc)
@@ -148,7 +148,7 @@ def select_file():
     outputTxtFile = '{}.{}'.format(filename, 'csv')
     print(outputTxtFile)
     # open new csv file
-    with open(outputTxtFile, "w", newline='') as output:
+    with open(outputTxtFile, "w", newline='', encoding='utf8') as output:
         # use csv.writer method to write output to csv package
         writer = csv.writer(output)
         writer.writerow(globalStdFullDesc)

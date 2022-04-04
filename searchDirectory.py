@@ -65,7 +65,7 @@ for file in dir_list:
         docstring = ' '.join(docdata)
         docSearchResults = searchAll()
         docSearchResults.insert(0, filename)
-        with open(dbFolder / dbFile, "a", newline='') as output:
+        with open(dbFolder / dbFile, "a", newline='', encoding='utf8') as output:
             # use csv.writer method to write output to csv package
             writer = csv.writer(output)
             writer.writerow(docSearchResults)
