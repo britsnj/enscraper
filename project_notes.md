@@ -36,3 +36,5 @@ Next Actions. Need to work on the regex to extract correct text (name) from docu
 - Save the new dataframe to a csv file.
 - Problem is, when I retrieve the dataframe and add to it again, it adds the data as a new column, and does not concatenate to the existing column. I need to look into this.
 - Also an issue with the encoding. Pandas not picking up UTF-08 encoding on the database csv. Need to change the save function in the gui file to encode to UTF-08 when saving to csv. Work for tomorrow.
+#220405
+-Fixed the encoding and managed to sort out the concatenation. Note to self, use Index=False to make sure the file is not saved with an index every time.
