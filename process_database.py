@@ -48,5 +48,9 @@ for i in range(shape[1]):
 final_df = final_df.drop_duplicates()
 
 print(final_df)
+
+for col in final_df.columns:
+    print(col)
+
 final_df.to_csv(database_file, index=False)
 
