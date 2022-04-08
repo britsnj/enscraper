@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from tkinter import filedialog
 from tkinter import *
+import re
 
 root = Tk()
 root.withdraw()
@@ -49,8 +50,12 @@ final_df = final_df.drop_duplicates()
 
 print(final_df)
 
-for col in final_df.columns:
-    print(col)
+en_mask = final_df.str.contains(r'^EN\W')
+print('Printing Mask')
+print(en_mask)
+en_df = final_df[0].contains(r'^EN\W')
+
+#print('FINAL OUTPUT'+en_df)
 
 final_df.to_csv(database_file, index=False)
 
