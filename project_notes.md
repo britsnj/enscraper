@@ -40,3 +40,5 @@ Next Actions. Need to work on the regex to extract correct text (name) from docu
 -Fixed the encoding and managed to sort out the concatenation. Note to self, use Index=False to make sure the file is not saved with an index every time.
 #220407
 - Struggling trying to extract data based on string from a series. 
+#220409
+- Mask sorted. Now need to apply the mask to the dataframe.
