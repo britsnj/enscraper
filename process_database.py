@@ -53,9 +53,11 @@ print(final_df)
 en_mask = final_df.str.contains(r'^EN\W')
 print('Printing Mask')
 print(en_mask)
-en_df = final_df[0].contains(r'^EN\W')
 
-#print('FINAL OUTPUT'+en_df)
+final_df=final_df.loc[en_mask]
+print('printing final df')
+print(final_df)
 
+#final_df.to_excel("en-database.xlsx")
 final_df.to_csv(database_file, index=False)
 
