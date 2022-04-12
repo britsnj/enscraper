@@ -42,3 +42,5 @@ Next Actions. Need to work on the regex to extract correct text (name) from docu
 - Struggling trying to extract data based on string from a series. 
 #220409
 - Mask sorted. Now need to apply the mask to the dataframe.
+#220412
+- Mask applied. Works like a charm. Now need to find a way to save into a usable format. 
