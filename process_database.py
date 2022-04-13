@@ -58,6 +58,12 @@ final_df=final_df.loc[en_mask]
 print('printing final df')
 print(final_df)
 
-#final_df.to_excel("en-database.xlsx")
+en_df = pd.read_csv('db_files\en_db.csv', engine='python')
+en_df = en_df.squeeze('columns')
+en_df = pd.concat([en_df, final_df])
+en_df = en_df.drop_duplicates()
+en_df.to_csv('db_files\en_db.csv', index=False)
+
+
 final_df.to_csv(database_file, index=False)
 
