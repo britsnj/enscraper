@@ -50,20 +50,25 @@ final_df = final_df.drop_duplicates()
 
 print(final_df)
 
-en_mask = final_df.str.contains(r'^EN\W')
-print('Printing Mask')
-print(en_mask)
+def updateSpecificDatabase(std):
+    reString = "r'^"+std+'\W'
+    mask = final_df.str.contains(reString)
+    print('Printing Mask')
+    print(mask)
 
-final_df=final_df.loc[en_mask]
-print('printing final df')
-print(final_df)
+    masked_df=final_df.loc[mask]
+    print('printing masked df')
+    print(masked_df)
 
-en_df = pd.read_csv('db_files\en_db.csv', engine='python')
-en_df = en_df.squeeze('columns')
-en_df = pd.concat([en_df, final_df])
-en_df = en_df.drop_duplicates()
-en_df.to_csv('db_files\en_db.csv', index=False)
+    stdFileName = 'db_files'+'\\'+str.lower(std)+'_db.csv'
+    print(stdFileName)
+    std_df = pd.read_csv(stdFileName, engine='python')
+    std_df = std_df.squeeze('columns')
+    std_df = pd.concat([std_df, final_df])
+    std_df = std_df.drop_duplicates()
+    std_df.to_csv(stdFileName, index=False)
 
+updateSpecificDatabase('EN')
 
 final_df.to_csv(database_file, index=False)
 
