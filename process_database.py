@@ -51,15 +51,14 @@ final_df = final_df.drop_duplicates()
 print(final_df)
 
 def updateSpecificDatabase(std):
-    reString = "'(^EN\W)'"
-    print(reString)
-    mask = final_df.str.extract(pat= reString)
+
+    mask = final_df.str.contains(fr'^{std}\W', regex= True)
     print('Printing Mask')
     print(mask)
 
-    #masked_df=final_df.loc[mask]
-    #print('printing masked df')
-    #print(masked_df)
+    masked_df=final_df.loc[mask]
+    print('printing masked df')
+    print(masked_df)
 
     stdFileName = 'db_files'+'\\'+str.lower(std)+'_db.csv'
     print(stdFileName)
@@ -70,10 +69,10 @@ def updateSpecificDatabase(std):
     std_df.to_csv(stdFileName, index=False)
 
 updateSpecificDatabase('EN')
-#updateSpecificDatabase('IS')
-#updateSpecificDatabase('ISO')
-#updateSpecificDatabase('IEC')
-#updateSpecificDatabase('IEEE')
+updateSpecificDatabase('IS')
+updateSpecificDatabase('ISO')
+updateSpecificDatabase('IEC')
+updateSpecificDatabase('IEEE')
 
 final_df.to_csv(database_file, index=False)
 
