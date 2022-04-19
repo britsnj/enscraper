@@ -3,6 +3,7 @@ import pandas as pd
 from tkinter import filedialog
 from tkinter import *
 import re
+from os.path import exists
 
 root = Tk()
 root.withdraw()
@@ -62,7 +63,12 @@ def updateSpecificDatabase(std):
 
     stdFileName = 'db_files'+'\\'+str.lower(std)+'_db.csv'
     print(stdFileName)
-    std_df = pd.read_csv(stdFileName, engine='python')
+    if exists(stdFileName):
+        std_df = pd.read_csv(stdFileName, engine='python')
+    else:
+        with open(stdFileName, "w") as f:
+            f.write("0")
+        std_df = pd.read_csv(stdFileName, engine='python')
     std_df = std_df.squeeze('columns')
     std_df = pd.concat([std_df, masked_df])
     std_df = std_df.drop_duplicates()
@@ -73,6 +79,9 @@ updateSpecificDatabase('IS')
 updateSpecificDatabase('ISO')
 updateSpecificDatabase('IEC')
 updateSpecificDatabase('IEEE')
+updateSpecificDatabase('BS')
+updateSpecificDatabase('NFPA')
+updateSpecificDatabase('DIN')
 
 final_df.to_csv(database_file, index=False)
 

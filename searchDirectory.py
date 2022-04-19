@@ -34,6 +34,10 @@ def searchAll():
     globalStdFullDesc = globalStdFullDesc + stdSearch("I.S.")
     globalStdFullDesc = globalStdFullDesc + stdSearch("ISO")
     globalStdFullDesc = globalStdFullDesc + stdSearch("IEEE")
+    globalStdFullDesc = globalStdFullDesc + stdSearch("BS")
+    globalStdFullDesc = globalStdFullDesc + stdSearch("ASHREA")
+    globalStdFullDesc = globalStdFullDesc + stdSearch("NFPA")
+    globalStdFullDesc = globalStdFullDesc + stdSearch("DIN")
     tempList = []
     for item in globalStdFullDesc:
         tempList.append(item.strip())
