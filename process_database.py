@@ -52,26 +52,27 @@ final_df = final_df.drop_duplicates()
 print(final_df)
 
 def updateSpecificDatabase(std):
-
+    #Create a true / false mask for standards beginning with the argument
     mask = final_df.str.contains(fr'^{std}\W', regex= True)
-    print('Printing Mask')
-    print(mask)
-
+    #Apply the mask to the final_df dataframe
     masked_df=final_df.loc[mask]
-    print('printing masked df')
-    print(masked_df)
+
 
     stdFileName = 'db_files'+'\\'+str.lower(std)+'_db.csv'
-    print(stdFileName)
+    #Check if database file exist and create if it does not. Write "0" into file. Pandas cannot parse empty csv file.
+    #Then open database file.
     if exists(stdFileName):
         std_df = pd.read_csv(stdFileName, engine='python')
     else:
         with open(stdFileName, "w") as f:
             f.write("0")
         std_df = pd.read_csv(stdFileName, engine='python')
+    #Squeeze colums to remove index column
     std_df = std_df.squeeze('columns')
+    #Concatenate the masked dataframe to the bottom of the standard dataframe and remove all duplicate entries.
     std_df = pd.concat([std_df, masked_df])
     std_df = std_df.drop_duplicates()
+    #Save the standard database.
     std_df.to_csv(stdFileName, index=False)
 
 updateSpecificDatabase('EN')
@@ -83,5 +84,7 @@ updateSpecificDatabase('BS')
 updateSpecificDatabase('NFPA')
 updateSpecificDatabase('DIN')
 
+#This saves the final dataframe. Should probably remove this and not concatenate this, or add a temp final dataframe. In the current
+#format the final dataframe will be added to the standard dataframe every time. Sloppy.
 final_df.to_csv(database_file, index=False)
 
