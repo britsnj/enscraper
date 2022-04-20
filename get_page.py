@@ -1,28 +1,40 @@
+import csv
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-url = "https://www.en-standard.eu/search/?q=IEC+31010%3A" ##This needs to be replaced with automated search call
 
-##To open the page pass the url to urlopen
+with open('db_files\en_db.csv', newline='') as csvDataFile:
+    fileContent = csv.reader(csvDataFile)
+    raw_data = []
+    for row in fileContent:
+        raw_data.extend(row)
+    del raw_data[0]
+    print(raw_data)
 
-page = urlopen(url)
+for std in raw_data:
+    std = std.replace(" ", "+")
+    url = f"https://www.en-standard.eu/search/?q={std}%3A" ##This needs to be replaced with automated search call
 
-## Unencode and save the page
-html_bytes = page.read()
-html = html_bytes.decode("utf-8")
+    ##To open the page pass the url to urlopen
 
-## Parse the page 
+    page = urlopen(url)
 
-soup = BeautifulSoup(html, 'html.parser')
+    ## Unencode and save the page
+    html_bytes = page.read()
+    html = html_bytes.decode("utf-8")
 
-##Search for the first catalogue product name from the results field. This is the first container with this class name
-##Most probably also the item that may change the easiest on the website. If the scraper breaks, start looking here.
+    ## Parse the page
 
-result = soup.find("a", class_="katalogProduct__name")
+    soup = BeautifulSoup(html, 'html.parser')
 
-title = result.contents[0] ##The first child in the result variable is the title of the standard.
-print(title)
+    ##Search for the first catalogue product name from the results field. This is the first container with this class name
+    ##Most probably also the item that may change the easiest on the website. If the scraper breaks, start looking here.
 
-output = result.span.get_text(" ") ## The name of the standard is located in a span tag.
+    result = soup.find("a", class_="katalogProduct__name")
 
-print (output)
+    title = result.contents[0] ##The first child in the result variable is the title of the standard.
+    print(title)
+
+    output = result.span.get_text(" ") ## The name of the standard is located in a span tag.
+
+    print (output)
