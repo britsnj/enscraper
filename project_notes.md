@@ -47,4 +47,5 @@ Next Actions. Need to work on the regex to extract correct text (name) from docu
 #220421
 - Apended the above info to a separate csv file for each of the data types.
 - Also started to iterate through the values using the get_page module to find the latest version of the standard.
-- 
+#220423
+- Stepping off this one for a while. Need to look at it with fresh eyes. Going to move over to the availability calculator.
